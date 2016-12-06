@@ -1,7 +1,3 @@
-/* Showing Mongoose's "Populated" Method (18.3.8)
- * INSTRUCTOR ONLY
- * =============================================== */
-
 // Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -55,7 +51,7 @@ app.get("/", function(req, res) {
 });
 
 // A GET request to scrape the echojs website
-app.get("/scrape", function(req, res) {
+app.get("/", function(req, res) {
   // First, we grab the body of the html with request
   request("http://www.clickhole.com/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -88,8 +84,6 @@ app.get("/scrape", function(req, res) {
 
     });
   });
-  // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
 });
 
 // This will get the articles we scraped from the mongoDB
