@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/week18day3mongoose");
+mongoose.connect("mongodb://localhost/newdb");
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -51,7 +51,7 @@ app.get("/", function(req, res) {
 });
 
 // A GET request to scrape the echojs website
-app.get("/", function(req, res) {
+app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("http://www.clickhole.com/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
