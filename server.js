@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/newdb");
+mongoose.connect("mongodb://heroku_2s36mhvm:jfadme3q56mmtpcq1l501hsvdq@ds133378.mlab.com:33378/heroku_2s36mhvm");
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -50,13 +50,14 @@ app.get("/", function(req, res) {
   res.send(index.html);
 });
 
-// A GET request to scrape the echojs website
+
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("http://www.clickhole.com/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
     // Now, we grab every h2 within an article tag, and do the following:
+
     $("article.summary h2").each(function(i, element) {
 
       // Save an empty result object
