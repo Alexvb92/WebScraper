@@ -45,13 +45,8 @@ db.once("open", function() {
 // Routes
 // ======
 
-// Simple index route
+
 app.get("/", function(req, res) {
-  res.send(index.html);
-});
-
-
-app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("http://www.clickhole.com/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -59,6 +54,10 @@ app.get("/scrape", function(req, res) {
     // Now, we grab every h2 within an article tag, and do the following:
 
     $("article.summary h2").each(function(i, element) {
+
+      if (typeof maybeObject != "undefined") {
+   alert("GOT THERE");
+}
 
       // Save an empty result object
       var result = {};
@@ -85,6 +84,7 @@ app.get("/scrape", function(req, res) {
 
     });
   });
+  res.send(index.html);
 });
 
 // This will get the articles we scraped from the mongoDB
